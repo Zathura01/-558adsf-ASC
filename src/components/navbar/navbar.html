@@ -1,0 +1,33 @@
+<nav class="navbar">
+<span class="nav-logo">
+  <button type="button" class="logo-btn" (click)="navigateToHome()">
+    EventMan
+  </button>
+</span>
+  <!-- Show search bar and account button if user is NOT logged in -->
+  <ng-container *ngIf="!userActivity.isUserLoggedIn">
+    <span class="nav-search-bar">
+      <input type="text" placeholder="Event Location...?" [(ngModel)]="eventLocation" />
+      <button type="reset" (click)="handleReset()" class="reset-btn">✖</button>
+      <button type="submit" (click)="handleSubmit()" class="submit-btn">Search</button>
+    </span>
+
+    <span class="create-event">
+      <button *ngIf="userActivity.userFormClicked" (click)="handleCreateEvent()">X</button>
+      <button *ngIf="!userActivity.userFormClicked" (click)="handleCreateEvent()">Your Account</button>
+    </span>
+  </ng-container>
+
+  <!-- Show user options if logged in -->
+  <ng-container *ngIf="userActivity.isUserLoggedIn">
+    <span class="nav-btns">
+      <button (click)="handleUpcomingEvents()" class="nav-action">My Upcoming Events</button>
+      <button (click)="handleFinishedEvents()" class="nav-action">My Finished Events</button>
+      <button (click)="handleNewEvent()" class="create-new">+ Create Event</button>
+    </span>
+
+    <span class="create-event">
+      <button (click)="handleLogout()" class="logout-btn">Logout</button>
+    </span>
+  </ng-container>
+</nav>

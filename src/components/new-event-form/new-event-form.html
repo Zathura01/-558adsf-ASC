@@ -1,0 +1,81 @@
+<form #f="ngForm" (ngSubmit)="submit(f)" class="event-form">
+  <h2>Create Event</h2>
+
+  <div class="grid">
+    <label>
+      Title
+      <input type="text" name="title" [(ngModel)]="model.title" required maxlength="120" />
+    </label>
+
+    <label>
+      Location
+      <input type="text" name="location" [(ngModel)]="model.location" required />
+    </label>
+
+    <label>
+      Date
+      <input type="date" name="date" [(ngModel)]="model.date" required />
+    </label>
+
+    <label>
+      Time
+      <input type="time" name="time" [(ngModel)]="model.time" required />
+    </label>
+
+    <label>
+      Capacity
+      <input type="number" min="1" name="capacity" [(ngModel)]="model.capacity" required />
+    </label>
+  </div>
+
+  <label class="block">
+    Description
+    <textarea name="description" [(ngModel)]="model.description" rows="5" required></textarea>
+  </label>
+
+  <hr />
+
+  <!-- Images -->
+  <div class="media">
+    <div class="media-head">
+      <h3>Images</h3>
+      <small>(JPG/PNG/WebP; multiple allowed)</small>
+    </div>
+    <input
+      type="file"
+      accept="image/*"
+      multiple
+      (change)="onImagesSelected($event)"
+    />
+
+    <div class="previews">
+      <div class="preview" *ngFor="let src of imagePreviews; let i = index">
+        <img [src]="src" alt="image preview" />
+        <button type="button" class="remove" (click)="removeImage(i)">✕</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Video -->
+  <div class="media">
+    <div class="media-head">
+      <h3>Video</h3>
+      <small>(MP4/WebM; single)</small>
+    </div>
+    <input
+      type="file"
+      accept="video/mp4,video/webm"
+      (change)="onVideoSelected($event)"
+    />
+
+    <div class="video-preview" *ngIf="videoPreview">
+      <video [src]="videoPreview" controls></video>
+      <button type="button" class="remove" (click)="clearVideo()">Remove Video</button>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button type="button" (click)="handleFormClose()">X</button>
+    <button type="submit" [disabled]="f.invalid">Save Event</button>
+  </div>
+</form>

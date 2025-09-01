@@ -1,0 +1,59 @@
+<app-navbar></app-navbar>
+
+<!-- Event Form -->
+<div class="eventFormDiv" *ngIf="newuserevent.showNewEventForm">
+  <app-event-form></app-event-form>
+</div>
+
+<!-- User Wall -->
+<div class="userWallDiv">
+
+  <!-- Upcoming Events -->
+  <h2 class="section-title">Upcoming Events</h2>
+  <div class="eventGrid">
+    <div class="eventCard" *ngFor="let item of wallData.upcomingEvents; let i = index">
+      <h3>{{ item.title }}</h3>
+      <p class="location">{{ item.location }}</p>
+      <p class="datetime">{{ item.date | date:'mediumDate' }} • {{ item.time }}</p>
+      <p class="capacity">Capacity: {{ item.capacity }}</p>
+      <p class="description">{{ item.description }}</p>
+
+      <!-- Media Scroll -->
+      <div class="mediaScroll">
+        <div *ngFor="let img of item.images" class="mediaItem">
+          <img [src]="img" alt="event image" />
+        </div>
+        <div *ngIf="item.video" class="mediaItem">
+          <video controls>
+            <source [src]="item.video" type="video/mp4" />
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Completed Events -->
+  <h2 class="section-title">Completed Events</h2>
+  <div class="eventGrid">
+    <div class="eventCard" *ngFor="let fut of wallData.completedEvents; let i = index">
+      <h3>{{ fut.title }}</h3>
+      <p class="location">{{ fut.location }}</p>
+      <p class="datetime">{{ fut.date | date:'mediumDate' }} • {{ fut.time }}</p>
+      <p class="capacity">Capacity: {{ fut.capacity }}</p>
+      <p class="description">{{ fut.description }}</p>
+
+      <!-- Media Scroll -->
+      <div class="mediaScroll">
+        <div *ngFor="let img of fut.images" class="mediaItem">
+          <img [src]="img" alt="completed event image" />
+        </div>
+        <div *ngIf="fut.video" class="mediaItem">
+          <video controls>
+            <source [src]="fut.video" type="video/mp4" />
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

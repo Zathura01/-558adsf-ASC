@@ -1,0 +1,73 @@
+.eventFormDiv {
+  position: absolute;
+  z-index: 1000;
+  margin-top: 10vh;
+  margin: auto;
+  width: 90vh;
+}
+.userWallDiv {
+  padding: 20px;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  margin: 20px 0 10px;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 5px;
+}
+
+.eventGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
+}
+
+.eventCard {
+  background: #fff;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s;
+}
+
+.eventCard:hover {
+  transform: translateY(-4px);
+}
+
+.eventCard h3 {
+  margin: 0 0 8px;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.eventCard p {
+  margin: 4px 0;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.mediaScroll {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+}
+
+.mediaItem img,
+.mediaItem video {
+  max-height: 150px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.mediaScroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.mediaScroll::-webkit-scrollbar-thumb {
+  background: #aaa;
+  border-radius: 3px;
+}

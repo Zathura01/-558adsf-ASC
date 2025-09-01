@@ -1,0 +1,39 @@
+<div class="form-container">
+
+  <div *ngIf="isLoginForm">
+    <h2>Login</h2>
+    <form (ngSubmit)="handleLogin()">
+      <input type="text" placeholder="Username" [(ngModel)]="dataLogin.username" name="loginUserName" required />
+      <input type="password" placeholder="Password" [(ngModel)]="dataLogin.password" name="loginPassword" required />
+      <input type="text" placeholder="OTP (optional)" [(ngModel)]="dataLogin.otp" name="loginOtp" />
+      <button *ngIf="userActivity.showOtpBtnOnForm" type="button" (click)="handleLoginOtp()">Send OTP</button>
+      <button *ngIf="!userActivity.showOtpBtnOnForm" type="submit">Login</button>
+    </form>
+  </div>
+
+  <div *ngIf="!isLoginForm">
+    <h2>Register</h2>
+    <form (ngSubmit)="handleRegister()">
+      <input type="text" placeholder="Username" [(ngModel)]="dataRegister.username" name="registerUserName" required />
+      <input type="password" placeholder="Password" [(ngModel)]="dataRegister.password" name="registerPassword" required />
+      <input type="password" placeholder="Confirm Password" [(ngModel)]="dataRegister.confirmpassword" name="registerConfirmPassword" required />
+      <input type="email" placeholder="Email" [(ngModel)]="dataRegister.email" name="registerEmail" required />
+      <input type="tel" placeholder="Cellphone" [(ngModel)]="dataRegister.cellphone" name="registerCellphone" />
+      <input type="text" placeholder="OTP (optional)" [(ngModel)]="dataRegister.otp" name="registerOtp" />
+      <button *ngIf="userActivity.showOtpBtnOnForm" type="button" (click)="handleRegisterOtp()">Send OTP</button>
+      <button *ngIf="!userActivity.showOtpBtnOnForm" type="submit">Register</button>
+    </form>
+  </div>
+
+  <!-- Toggle button -->
+  <p class="toggle">
+    <span *ngIf="isLoginForm">
+      Don’t have an account? 
+      <button type="button" (click)="toggleForm()">Register here</button>
+    </span>
+    <span *ngIf="!isLoginForm">
+      Already have an account? 
+      <button type="button" (click)="toggleForm()">Login here</button>
+    </span>
+  </p>
+</div>
